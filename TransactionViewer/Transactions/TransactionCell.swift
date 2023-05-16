@@ -64,9 +64,15 @@ class TransactionCell: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func configure(with item: Transaction) {
-        titleLabel.text = item.amount
-        descriptionLabel.text = item.currency
+    func configure(with item: Transaction, rates: [Rate]) {
+        guard let itemAsDouble = Double(item.amount) else { return }
+        titleLabel.text = "\(itemAsDouble.formatted(.currency(code: item.currency)))"
+        descriptionLabel.text = getDescription(amount: itemAsDouble, currency: item.currency, rates: rates)
+    }
+    
+    func getDescription(amount: Double, currency: String, rates: [Rate]) -> String {
+        guard let rateAsDouble = Double(rates.first(where: { $0.from == currency })?.rate ?? "") else { return "" }
+        return "\((amount * rateAsDouble).formatted(.currency(code: "GBP")))"
     }
     
 }

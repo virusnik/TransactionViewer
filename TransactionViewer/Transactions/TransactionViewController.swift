@@ -79,11 +79,16 @@ extension TransactionViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.getNumberOfRowsInSection()
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.getTotalSum()
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TransactionCell.cellID) as? TransactionCell else { return UITableViewCell() }
         let transaction = viewModel.transactions[indexPath.row]
-        cell.configure(with: transaction)
+        let rates = viewModel.rates
+        cell.configure(with: transaction, rates: rates)
         return cell
     }
 
