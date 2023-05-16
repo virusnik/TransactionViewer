@@ -1,5 +1,5 @@
 //
-//  ProductCell.swift
+//  TransactionCell.swift
 //  TransactionViewer
 //
 //  Created by Sergio Veliz on 16.05.2023.
@@ -7,7 +7,7 @@
 
 import UIKit.UITableViewCell
 
-class ProductCell: UITableViewCell {
+class TransactionCell: UITableViewCell {
     
     //MARK: Subviews
     
@@ -64,9 +64,9 @@ class ProductCell: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func configure(with item: Product) {
-        titleLabel.text = item.name
-        descriptionLabel.text = "\(item.transactions.count) transactions"
+    func configure(with item: Transaction) {
+        titleLabel.text = item.amount
+        descriptionLabel.text = item.currency
     }
     
 }

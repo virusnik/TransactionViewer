@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TransactionViewController.swift
 //  TransactionViewer
 //
 //  Created by Sergio Veliz on 16.05.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductViewController: UIViewController {
+class TransactionViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -15,10 +15,10 @@ class ProductViewController: UIViewController {
         return tableView
     }()
     
-    private var viewModel = ProductViewModel()
+    private var viewModel = TransactionViewModel(transactions: [Transaction(amount: "", currency: "", sku: "")])
     
     //MARK:  Life cycle
-    init(viewModel: ProductViewModel)  {
+    init(viewModel: TransactionViewModel)  {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
@@ -30,16 +30,16 @@ class ProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel.delegate = self
-        setupNavigationController(title: "Products")
+        setupNavigationController(title: "Transactions")
         setupTableView()
         setupConstraints()
-        viewModel.getProducts()
+        viewModel.getRates()
         tableView.reloadData()
     }
     
     //MARK: Initial setup
     private func setupTableView() {
-        tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.cellID)
+        tableView.register(TransactionCell.self, forCellReuseIdentifier: TransactionCell.cellID)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
@@ -71,33 +71,26 @@ class ProductViewController: UIViewController {
 }
 
 //MARK: UITableViewDataSource
-extension ProductViewController: UITableViewDataSource, UITableViewDelegate {
-    
+extension TransactionViewController: UITableViewDataSource, UITableViewDelegate {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.getNumberOfRowsInSection()
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.cellID) as? ProductCell else { return UITableViewCell() }
-        guard let product = viewModel.getProduct(at: indexPath.row) else { return UITableViewCell() }
-        cell.configure(with: product)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TransactionCell.cellID) as? TransactionCell else { return UITableViewCell() }
+        let transaction = viewModel.transactions[indexPath.row]
+        cell.configure(with: transaction)
         return cell
     }
-    
-    //MARK: UITableViewDelegate
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.didSelectProduct(at: indexPath.row)
-    }
-    
-    
+
 }
 
 
-extension ProductViewController: ProductViewModelDelegate {
+extension TransactionViewController: TransactionViewModelDelegate {
     func reloadData() {
         tableView.reloadData()
     }

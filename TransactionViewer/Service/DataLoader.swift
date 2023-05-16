@@ -26,7 +26,7 @@ class DataLoader {
         }
     }
     
-    private func getAllRates(completion: @escaping ([Rate]) -> ()) {
+    func getAllRates(completion: @escaping ([Rate]) -> ()) {
         if let path = Bundle.main.path(forResource: "rates", ofType: "plist"),
            let data = FileManager.default.contents(atPath: path) {
             let decoder = PropertyListDecoder()

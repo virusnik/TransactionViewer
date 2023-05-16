@@ -13,10 +13,12 @@ protocol ProductViewModelDelegate: AnyObject {
 
 class ProductViewModel {
     
-    private let configure = DataLoader()
+    private let dataService = DataLoader()
     private var products: [Product] = [Product]()
     
     weak var delegate: ProductViewModelDelegate?
+    
+    var coordinator: ProductCoordinator?
     
     init() {}
     
@@ -25,7 +27,7 @@ class ProductViewModel {
     }
     
     func getTransactions() {
-        configure.getAllTransaction(completion: {[weak self] transactions in
+        dataService.getAllTransaction(completion: { [weak self] transactions in
             self?.getProducts(transactions: transactions)
         })
     }
@@ -49,6 +51,9 @@ class ProductViewModel {
     }
     
     func didSelectProduct(at index: Int) {
-//        TODO: add transition
+        let transactions = products[index].transactions
+        if let coordinator = coordinator {
+            coordinator.onSelect(transactions)
+        }
     }
 }
