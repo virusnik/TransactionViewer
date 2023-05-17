@@ -29,6 +29,7 @@
 		36A2E0402A141CE700B90A59 /* ProductCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A2E03F2A141CE700B90A59 /* ProductCoordinator.swift */; };
 		36A2E0422A141D0000B90A59 /* TransactionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A2E0412A141D0000B90A59 /* TransactionsCoordinator.swift */; };
 		36A2E0452A141D5000B90A59 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A2E0442A141D5000B90A59 /* Style.swift */; };
+		36A2E0472A14BB3B00B90A59 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A2E0462A14BB3B00B90A59 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		36A2E03F2A141CE700B90A59 /* ProductCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCoordinator.swift; sourceTree = "<group>"; };
 		36A2E0412A141D0000B90A59 /* TransactionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsCoordinator.swift; sourceTree = "<group>"; };
 		36A2E0442A141D5000B90A59 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		36A2E0462A14BB3B00B90A59 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				366A0A902A13AA36002A556D /* Assets.xcassets */,
 				366A0A922A13AA36002A556D /* LaunchScreen.storyboard */,
 				366A0A952A13AA36002A556D /* Info.plist */,
+				36A2E0462A14BB3B00B90A59 /* Constants.swift */,
 			);
 			path = TransactionViewer;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36A2E0372A140D2C00B90A59 /* AppCoordinator.swift in Sources */,
+				36A2E0472A14BB3B00B90A59 /* Constants.swift in Sources */,
 				366A0AA72A13B513002A556D /* Transactions.swift in Sources */,
 				366A0A8C2A13AA35002A556D /* ProductViewController.swift in Sources */,
 				363801BD2A13F40400F8FF64 /* Product.swift in Sources */,

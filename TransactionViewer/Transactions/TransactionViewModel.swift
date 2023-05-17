@@ -33,13 +33,19 @@ class TransactionViewModel {
     
     func getTotalSum() -> String {
         var sum:Double = 0.0
+        var amount: Double = 0.0
         for item in transactions {
-            guard let rateAsDouble = Double(rates.first(where: { $0.from == item.currency })?.rate ?? "") else { return "" }
-            var amount = Double(item.amount)! * rateAsDouble
+            if item.currency == Constants.baseCurrency {
+                amount = ((Double(item.amount)! * 1))
+            } else {
+                guard let rateAsDouble = Double(rates.first(where: { $0.from == item.currency })?.rate ?? "") else { return "" }
+                amount = Double(item.amount)! * rateAsDouble
+            }
+            
             sum += amount
         }
         
-        return "Total: \((sum).formatted(.currency(code: "GBP")))"
+        return "Total: \((sum).formatted(.currency(code: Constants.baseCurrency)))"
     }
     
     func getNumberOfRowsInSection() -> Int {

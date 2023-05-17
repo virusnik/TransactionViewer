@@ -71,8 +71,11 @@ class TransactionCell: UITableViewCell {
     }
     
     func getDescription(amount: Double, currency: String, rates: [Rate]) -> String {
+        if currency == Constants.baseCurrency {
+            return  "\((amount * 1).formatted(.currency(code: Constants.baseCurrency)))"
+        }
         guard let rateAsDouble = Double(rates.first(where: { $0.from == currency })?.rate ?? "") else { return "" }
-        return "\((amount * rateAsDouble).formatted(.currency(code: "GBP")))"
+        return "\((amount * rateAsDouble).formatted(.currency(code: Constants.baseCurrency)))"
     }
     
 }
